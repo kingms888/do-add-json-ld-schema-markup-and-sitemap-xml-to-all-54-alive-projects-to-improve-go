@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>JSON-LD Schema & Sitemap Generator for Developer Tools | Improve Google Index</title>
+  <meta name="description" content="Add JSON-LD schema markup and generate sitemap.xml for all your projects. Free online tool for developers to boost Google indexing of CSV/JSON tools, video converters, and SEO tools.">
+  <meta name="keywords" content="json to csv converter, json to excel, json viewer, video converter online, mp4 converter, seo tools, developer tools, csv/json tools, add json-ld schema markup and sitemap.xml to all 54 alive projects to improve google index">
+  <meta name="author" content="DevTools Suite">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://example.com/json-ld-sitemap-generator">
+  <!-- Open Graph -->
+  <meta property="og:title" content="JSON-LD Schema & Sitemap Generator for Developer Tools">
+  <meta property="og:description" content="Add JSON-LD schema markup and generate sitemap.xml for all your projects. Free online tool for developers.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://example.com/json-ld-sitemap-generator">
+  <meta property="og:image" content="https://example.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="JSON-LD Schema & Sitemap Generator">
+  <meta name="twitter:description" content="Add JSON-LD schema markup and generate sitemap.xml for all your projects. Free online tool for developers.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "JSON-LD Schema & Sitemap Generator",
+    "description": "Generate JSON-LD schema markup and sitemap.xml for developer tool projects to improve Google indexing.",
+    "applicationCategory": "Developer Tool",
+    "operatingSystem": "All",
+    "browserRequirements": "JavaScript enabled",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      background: #f8fafc;
+      color: #1e293b;
+      line-height: 1.6;
+      padding: 1rem;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      padding: 2rem 1.5rem;
+    }
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 0.25rem;
+      letter-spacing: -0.02em;
+    }
+    .subhead {
+      color: #475569;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      border-left: 4px solid #3b82f6;
+      padding-left: 1rem;
+    }
+    .tool-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    @media (min-width: 768px) {
+      .tool-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    .card {
+      background: #f1f5f9;
+      border-radius: 16px;
+      padding: 1.5rem;
+      border: 1px solid #e2e8f0;
+    }
+    .card h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .card h2 span {
+      background: #3b82f6;
+      color: white;
+      font-size: 0.7rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+    }
+    label {
+      font-weight: 500;
+      display: block;
+      margin: 0.75rem 0 0.25rem;
+      font-size: 0.9rem;
+    }
+    textarea, input[type="text"], input[type="url"] {
+      width: 100%;
+      padding: 0.6rem 0.8rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      background: white;
+      transition: border 0.2s;
+      font-family: inherit;
+    }
+    textarea:focus, input:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
+    }
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    .btn {
+      background: #3b82f6;
+      color: white;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      display: inline-block;
+      margin-top: 0.75rem;
+    }
+    .btn:hover {
+      background: #2563eb;
+    }
+    .btn:active {
+      transform: scale(0.97);
+    }
+    .btn-secondary {
+      background: #e2e8f0;
+      color: #1e293b;
+    }
+    .btn-secondary:hover {
+      background: #cbd5e1;
+    }
+    .output-area {
+      background: #0f172a;
+      color: #a5f3fc;
+      padding: 1rem;
+      border-radius: 12px;
+      font-family: 'Menlo', 'Consolas', monospace;
+      font-size: 0.8rem;
+      white-space: pre-wrap;
+      word-break: break-all;
+      margin-top: 1rem;
+      max-height: 300px;
+      overflow: auto;
+    }
+    .inline-flex {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .badge {
+      background: #e2e8f0;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      color: #475569;
+    }
+    .ad-placeholder {
+      background: #fef9c3;
+      border: 1px dashed #eab308;
+      border-radius: 12px;
+      padding: 1rem;
+      text-align: center;
+      margin: 2rem 0 1rem;
+      color: #854d0e;
+      font-size: 0.9rem;
+    }
+    .ad-placeholder strong {
+      display: block;
+      font-size: 1rem;
+    }
+    .affiliate-section {
+      background: #f1f5f9;
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border: 1px solid #e2e8f0;
+    }
+    .affiliate-section h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+    }
+    .affiliate-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .affiliate-item {
+      background: white;
+      padding: 0.75rem 1rem;
+      border-radius: 10px;
+      border: 1px solid #e2e8f0;
+      flex: 1 1 180px;
+      font-size: 0.9rem;
+    }
+    .affiliate-item a {
+      color: #3b82f6;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .affiliate-item a:hover {
+      text-decoration: underline;
+    }
+    .privacy-note {
+      background: #f1f5f9;
+      border-radius: 12px;
+      padding: 0.75rem 1rem;
+      font-size: 0.8rem;
+      color: #64748b;
+      margin-top: 2rem;
+      border-left: 4px solid #94a3b8;
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: #64748b;
+    }
+    .footer-links a {
+      color: #3b82f6;
+      text-decoration: none;
+    }
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #e2e8f0;
+      margin: 1.5rem 0;
+    }
+    .copy-btn {
+      background: #334155;
+      color: white;
+      border: none;
+      padding: 0.3rem 1rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      margin-left: 0.5rem;
+    }
+    .copy-btn:hover {
+      background: #1e293b;
+    }
+    @media (max-width: 480px) {
+      .container { padding: 1rem; }
+      h1 { font-size: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>⚡ Schema & Sitemap Generator</h1>
+      <div class="subhead">Add JSON-LD schema markup and generate sitemap.xml for all your projects — improve Google indexing for developer tools, CSV/JSON converters, video tools, and more.</div>
+    </header>
+
+    <!-- Ad Placeholder -->
+    <div class="ad-placeholder">
+      <strong>📢 Sponsor</strong>
+      <span>Your ad here — reach developers building tools like JSON to CSV, MP4 converters, and SEO utilities. <a href="#" style="color:#3b82f6;">Learn more</a></span>
+    </div>
+
+    <div class="tool-grid">
+      <!-- JSON-LD Schema Generator -->
+      <div class="card">
+        <h2>📋 JSON-LD Schema <span>WebSite</span></h2>
+        <p style="font-size:0.85rem; color:#475569; margin-bottom:0.75rem;">Generate schema markup for your project or tool page.</p>
+        <label for="schemaName">Project Name</label>
+        <input type="text" id="schemaName" placeholder="e.g. JSON to CSV Converter" value="JSON to CSV Converter">
+        <label for="schemaUrl">Page URL</label>
+        <input type="url" id="schemaUrl" placeholder="https://example.com/json-to-csv" value="https://example.com/json-to-csv">
+        <label for="schemaDesc">Short Description</label>
+        <textarea id="schemaDesc" rows="2">Convert JSON data to CSV format instantly. Free online developer tool.</textarea>
+        <div class="inline-flex">
+          <button class="btn" id="generateSchemaBtn">Generate JSON-LD</button>
+          <button class="btn btn-secondary" id="copySchemaBtn">📋 Copy</button>
+        </div>
+        <div class="output-area" id="schemaOutput" role="region" aria-label="Generated JSON-LD schema markup">Click "Generate JSON-LD"</div>
+      </div>
+
+      <!-- Sitemap Generator -->
+      <div class="card">
+        <h2>🗺️ Sitemap XML <span>54 projects</span></h2>
+        <p style="font-size:0.85rem; color:#475569; margin-bottom:0.75rem;">Generate a sitemap.xml for all your alive projects. Enter one URL per line.</p>
+        <label for="sitemapUrls">Project URLs (one per line)</label>
+        <textarea id="sitemapUrls" rows="6">https://example.com/json-to-csv
+https://example.com/json-to-excel
+https://example.com/json-viewer
+https://example.com/video-converter
+https://example.com/mp4-converter
+https://example.com/seo-tools
+https://example.com/developer-tools
+https://example.com/csv-json-tools
+https://example.com/schema-markup
+https://example.com/sitemap-generator
+https://example.com/image-optimizer
+https://example.com/html-minifier
+https://example.com/css-formatter
+https://example.com/js-beautifier
+https://example.com/yaml-validator
+https://example.com/xml-to-json
+https://example.com/base64-encoder
+https://example.com/url-encoder
+https://example.com/markdown-editor
+https://example.com/diff-checker
+https://example.com/color-picker
+https://example.com/unit-converter
+https://example.com/cron-expression
+https://example.com/regex-tester
+https://example.com/sql-formatter
+https://example.com/jwt-decoder
+https://example.com/uuid-generator
+https://example.com/hash-generator
+https://example.com/lorem-ipsum
+https://example.com/port-checker
+https://example.com/ssl-checker
+https://example.com/dns-lookup
+https://example.com/whois-lookup
+https://example.com/ip-location
+https://example.com/user-agent
+https://example.com/http-headers
+https://example.com/json-validator
+https://example.com/csv-viewer
+https://example.com/excel-viewer
+https://example.com/tsv-converter
+https://example.com/ods-converter
+https://example.com/xlsx-viewer
+https://example.com/number-base
+https://example.com/text-diff
+https://example.com/case-converter
+https://example.com/word-counter
+https://example.com/character-counter
+https://example.com/line-counter
+https://example.com/file-size
+https://example.com/mime-type
+https://example.com/url-parser
+https://example.com/query-string
+https://example.com/html-entity
+https://example.com/roman-numeral</textarea>
+        <div class="inline-flex">
+          <button class="btn" id="generateSitemapBtn">Generate Sitemap</button>
+          <button class="btn btn-secondary" id="copySitemapBtn">📋 Copy</button>
+        </div>
+        <div class="output-area" id="sitemapOutput" role="region" aria-label="Generated sitemap XML">Click "Generate Sitemap"</div>
+      </div>
+    </div>
+
+    <!-- Affiliate / Resource Section -->
+    <div class="affiliate-section">
+      <h3>🔗 Recommended Developer Resources</h3>
+      <div class="affiliate-items">
+        <div class="affiliate-item">
+          <a href="#" target="_blank" rel="noopener">JSON to CSV Pro</a> — Bulk convert with schema detection
+        </div>
+        <div class="affiliate-item">
+          <a href="#" target="_blank" rel="noopener">SEO Audit Kit</a> — Improve Google index with structured data
+        </div>
+        <div class="affiliate-item">
+          <a href="#" target="_blank" rel="noopener">Video Converter API</a> — MP4, WebM, AVI online
+        </div>
+        <div class="affiliate-item">
+          <a href="#" target="_blank" rel="noopener">Sitemap Generator Tool</a> — Auto-submit to search consoles
+        </div>
+      </div>
+    </div>
+
+    <!-- Privacy Note -->
+    <div class="privacy-note">
+      🔒 <strong>Privacy note:</strong> Events may be counted anonymously for product improvement. No personal data collected. We use minimal analytics to improve this tool.
+    </div>
+
+    <hr>
+    <footer>
+      <div class="footer-links">
+        <span>© 2025 DevTools Suite</span>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Contact</a>
+        <span class="badge">v2.1</span>
+      </div>
+      <p style="font-size:0.75rem; color:#94a3b8; margin-top:0.5rem;">Built for developers — add JSON-LD schema markup and sitemap.xml to all 54 alive projects to improve Google index.</p>
+    </footer>
+  </div>
+
+  <script>
+    (function() {
+      // Privacy-compliant event reporting
+      window.reportEvent = function(name, payload) {
+        if (window.ORGANISM_METRICS_ENDPOINT && typeof window.ORGANISM_METRICS_ENDPOINT === 'string') {
+          try {
+            const body = JSON.stringify({ event: name, payload: payload || {}, timestamp: new Date().toISOString() });
+            fetch(window.ORGANISM_METRICS_ENDPOINT, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: body,
+              keepalive: true
+            }).catch(() => {});
+          } catch (e) {
+            // silent
+          }
+        }
+      };
+
+      // JSON-LD Schema Generator
+      const schemaName = document.getElementById('schemaName');
+      const schemaUrl = document.getElementById('schemaUrl');
+      const schemaDesc = document.getElementById('schemaDesc');
+      const schemaOutput = document.getElementById('schemaOutput');
+      const generateSchemaBtn = document.getElementById('generateSchemaBtn');
+      const copySchemaBtn = document.getElementById('copySchemaBtn');
+
+      function generateSchema() {
+        const name = schemaName.value.trim() || 'My Project';
+        const url = schemaUrl.value.trim() || 'https://example.com';
+        const desc = schemaDesc.value.trim() || 'A developer tool.';
+        const schema = {
+          "@context": "https://schema.org",
+          "@type": "WebApplication",
+          "name": name,
+          "url": url,
+          "description": desc,
+          "applicationCategory": "Developer Tool",
+          "operatingSystem": "All",
+          "browserRequirements": "JavaScript enabled"
+        };
+        const pretty = JSON.stringify(schema, null, 2);
+        schemaOutput.textContent = pretty;
+        reportEvent('generate_schema', { name: name });
+        return pretty;
+      }
+
+      generateSchemaBtn.addEventListener('click', generateSchema);
+
+      copySchemaBtn.addEventListener('click', function() {
+        const text = schemaOutput.textContent;
+        if (text && text !== 'Click "Generate JSON-LD"') {
+          navigator.clipboard.writeText(text).then(() => {
+            const orig = copySchemaBtn.textContent;
+            copySchemaBtn.textContent = '✅ Copied!';
+            setTimeout(() => { copySchemaBtn.textContent = orig; }, 2000);
+            reportEvent('copy_schema', {});
+          }).catch(() => {});
+        }
+      });
+
+      // Sitemap Generator
+      const sitemapUrls = document.getElementById('sitemapUrls');
+      const sitemapOutput = document.getElementById('sitemapOutput');
+      const generateSitemapBtn = document.getElementById('generateSitemapBtn');
+      const copySitemapBtn = document.getElementById('copySitemapBtn');
+
+      function generateSitemap() {
+        const raw = sitemapUrls.value;
+        const lines = raw.split('\n').map(l => l.trim()).filter(l => l.startsWith('http://') || l.startsWith('https://'));
+        if (lines.length === 0) {
+          sitemapOutput.textContent = '⚠️ Please enter at least one valid URL starting with http:// or https://';
+          return;
+        }
+        let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
+        xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
+        const today = new Date().toISOString().split('T')[0];
+        lines.forEach(url => {
+          xml += '  <url>\n';
+          xml += `    <loc>${escapeXml(url)}</loc>\n`;
+          xml += `    <lastmod>${today}</lastmod>\n`;
+          xml += '    <changefreq>weekly</changefreq>\n';
+          xml += '    <priority>0.8</priority>\n';
+          xml += '  </url>\n';
+        });
+        xml += '</urlset>';
+        sitemapOutput.textContent = xml;
+        reportEvent('generate_sitemap', { count: lines.length });
+        return xml;
+      }
+
+      function escapeXml(unsafe) {
+        return unsafe.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
+      }
+
+      generateSitemapBtn.addEventListener('click', generateSitemap);
+
+      copySitemapBtn.addEventListener('click', function() {
+        const text = sitemapOutput.textContent;
+        if (text && text !== 'Click "Generate Sitemap"' && !text.startsWith('⚠️')) {
+          navigator.clipboard.writeText(text).then(() => {
+            const orig = copySitemapBtn.textContent;
+            copySitemapBtn.textContent = '✅ Copied!';
+            setTimeout(() => { copySitemapBtn.textContent = orig; }, 2000);
+            reportEvent('copy_sitemap', {});
+          }).catch(() => {});
+        }
+      });
+
+      // Auto-generate on load with defaults
+      window.addEventListener('DOMContentLoaded', function() {
+        generateSchema();
+        generateSitemap();
+        // Report page view
+        reportEvent('page_view', { page: 'json-ld-sitemap-generator' });
+      });
+    })();
+  </script>
+
+<section data-organism-discovery="hub" style="margin:32px auto 20px;max-width:1040px;padding:16px;border-top:1px solid #d9e2ec;color:#475569;font:14px/1.5 system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <strong style="display:block;color:#0f172a;margin-bottom:6px">More free browser tools</strong>
+  <p style="margin:0 0 8px">This page is part of an autonomous micro-tool network. Explore the live tool directory and related utilities.</p>
+  <p style="margin:0"><a href="https://kingms888.github.io/do-digital-organism-index/" style="color:#0f766e;font-weight:700">Open the tool directory</a> </p>
+</section>
+</body>
+</html>
